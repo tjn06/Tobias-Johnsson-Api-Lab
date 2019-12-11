@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Books</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="script.js" charset="utf-8"></script>
+</head>
+<body>
+
+	<div class="inputTopDiv">
+	
+	<h1>Books</h1>
+	<div class="formsDiv">
+
+		<div>
+			<input id="loginInput" type="text" size="6" placeholder="Login-Key" value="ag33u"/>
+			<button id="loginBtn" type="button">Login</button> <button id="apiKey">Request Key:</button>
+		</div>
+
+	<div>
+		<input type="text" id="titleInput" value="" placeholder="Titel" size="15" />
+		<input type="text" id="authorInput" value="" placeholder="Author" size="15" />
+		<button id="createBookButton">Create Book</button>
+	</div>
+
+</div>
+<br>
+<div>
+<button id="showCards">Show/Update Library</button>
+</div>
+<span>LOGIN KEY: <span id="loginText"></span></span>
+
+
+</div>
+
+	<div class="bookCards"></div>
+
+	<div class="apiBottomDiv">
+		<p>Api-response:</p>
+		<ul id="apiResponse"></ul>
+	</div>
+
+</body>
+</html>

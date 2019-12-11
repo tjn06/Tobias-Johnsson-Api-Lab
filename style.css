@@ -1,0 +1,106 @@
+* {
+	padding: 0px;
+	margin: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Verdana;
+    font-size: 1em;
+    background-color: rgb(255, 255, 255);
+    background: url(backglibr.jpg);
+	background-size: cover;
+	
+}
+
+button {
+    background-color: rgb(37, 130, 158); /* Green */
+    border-radius: 2px;
+    color: rgb(241, 241, 241);
+    font-family: Arial;
+    border: 2px solid rgb(37, 130, 158);
+    margin: 3px 0;
+    box-sizing: border-box;
+    padding: 5px 10px;
+  }
+
+  input[type=text] {
+    border: 2px solid rgb(37, 130, 158);
+    border-radius: 2px;
+    margin: 3px 0;
+    box-sizing: border-box;
+    padding: 5px 10px;
+  }
+
+.formsDiv {
+    display: grid;
+}
+
+
+.bookCards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    font-size: 0.7em;
+}
+
+.card {
+	border: 2px solid rgb(37, 130, 158);
+	border-radius: 2px;
+	padding: 1em;
+    margin: 1em;
+    background-color: rgb(253, 253, 253);
+}
+
+li {
+    list-style-type: none;
+}
+
+#spanTitle, #spanAuthor {
+    color: rgb(126, 46, 86);
+    border: 1px solid silver;
+}
+.inputTopDiv {
+    display: flex;
+    min-height: 10vh;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;  
+    padding-left: 1em;
+
+}
+
+.apiBottomDiv {
+    display: flex;
+    min-height: 30vh;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 1em;
+    padding-bottom: 1em;
+    
+}
+
+#apiResponse {
+  font-size: 0.8em;  
+}
+
+@media (min-width: 600px) {
+    .inputTopDiv {
+        display: flex;
+        min-height: 30vh;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .apiBottomDiv {
+        display: flex;
+        min-height: 30vh;
+        flex-direction: column;
+        align-items: flex-start;
+        border-top: 1px solid black;
+       
+    }
+
+}
+
+
