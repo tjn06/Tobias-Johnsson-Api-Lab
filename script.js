@@ -25,7 +25,7 @@ window.addEventListener('load', () => {
 		'Message: Click on the login-button to use the key';
 		apiStatusUl.appendChild(successMessage);
 		} else {
-			let erroressage = document.createElement('li');
+			let errorMessage = document.createElement('li');
 			errorMessage.innerHTML =  'Keyrequest status: ' + respData.status + '<br>' + 
 			'Message: Click on the Get api key to get a new key';
 			apiStatusUl.appendChild(errorMessage);
