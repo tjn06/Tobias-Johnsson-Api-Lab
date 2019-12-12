@@ -1,0 +1,17 @@
+Pontus Kodgranskning
+https://github.com/Pozee/Laboration-9-AJAX/blob/master/script.js
+
+3 Bra saker: 
+
+- Pontus har skrivit en för mig tydlig kod.
+Bra variabelnamn, bra funktionsnamn. 
+
+- Han återanvänder funktioner. 
+
+-Har använt sig av en smidig getData-funktion 
+function getData(key, triesLeft) som inte behöver en for-loop eller
+forEach. Han återanvänder den på ett smidigt sätt.
+
+Vad kan göras bättre
+- Har använt sig av bokstaven ö i klassnamnen som han borde byta ut.
+  Misstänker att det skulle kunna uppstå problem om man inte använder sig av rätt encoding.
