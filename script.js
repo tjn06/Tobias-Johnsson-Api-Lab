@@ -1,9 +1,7 @@
 const apiUrlQuestion = 'https://www.forverkliga.se/JavaScript/api/crud.php?requestKey';
-			//const UrlNoKey = 'https://www.forverkliga.se/JavaScript/api/crud.php';
 let theKey = '';
 const baseUrl = 'https://www.forverkliga.se/JavaScript/api/crud.php?key=';
 
-			//const proxyUrl = 'https://cors-anywhere.herokuapp.com/'; */
 
 	/*------------------------------------------------------------------Window Load and ApiKey*/
     window.addEventListener('load', () => {
@@ -13,17 +11,12 @@ const baseUrl = 'https://www.forverkliga.se/JavaScript/api/crud.php?key=';
         getAPIKey.addEventListener('click', async e => {
             
             const response = await fetch(apiUrlQuestion);
-            console.log(response);
-            
             const respData = await response.json();
-			console.log('JSON data: ', respData);
 
 			let apiStatusUl = document.querySelector('#apiResponse');
 			apiStatusUl.innerHTML = ''; //Rensa
 			if (respData.status == 'success') {
-				let respDataKey = respData.key; 
-			
-				console.log(respDataKey);
+				
 				
 				let display = document.querySelector('#loginInput');
 				display.value = respData.key;
@@ -38,18 +31,7 @@ const baseUrl = 'https://www.forverkliga.se/JavaScript/api/crud.php?key=';
 				'Message: Click on the Get api key to get a new key';
 				apiStatusUl.appendChild(errorMessage);
 			}//else
-			/*
-			if (respData.status = 'success') {
-            let respDataKey = respData.key; 
 			
-			console.log(respDataKey);
-			
-			let display = document.querySelector('#loginInput');
-			display.value = respData.key;
-		}
-		else {
-			console.log('Error');
-		} */
 		}); //Get Key
 
 /*------------------------------------------------------------------------Login and key*/
@@ -58,17 +40,23 @@ loginText
 		let displayInput = document.querySelector('#loginInput');
 		let scart = document.querySelector('#loginBtn');
 		scart.addEventListener('click', async e => {
-			
 		  theKey = displayInput.value;
 		  loginUser.innerText = theKey;
-		  displayInput.value = ''; //Rensa
-		  
-		  console.log('You entered : ', theKey);
-		 // displayInput.value = "";
-		// End of scart addEvenlistener function in bottom of document
+		  displayInput.value = ''; //Clear
+		  let apiStatusUl = document.querySelector('#apiResponse');
+		  apiStatusUl.innerHTML = ''; //Clear
+		if (loginUser.innerText == '') {
+			let errorMessage = document.createElement('li');
+			errorMessage.innerHTML = 'Status: error' + '<br>' + 
+		'Message: No key, request a key or input a key in the Login key-field ';
+		apiStatusUl.appendChild(errorMessage);
+		} else {
+		let see = document.createElement('li');
+		see.innerHTML = 'Status success: ' + '<br>' + 
+		'Message: Click on the login-button to use the key';
+		apiStatusUl.appendChild(see);
+		}
 	});
-		
-
 /*------------------------------------------------------------------------CreateBook with inputfields*/
 	const createBook = document.querySelector('#createBookButton');
         createBook.addEventListener('click', async e => {
@@ -76,17 +64,15 @@ loginText
 			let authorAdd = document.querySelector('#authorInput');
 			let apiStatusUl = document.querySelector('#apiResponse');
 			apiStatusUl.innerHTML = ''; //Rensa
-		const urlAddBook = `${baseUrl}${theKey}&op=insert&title=${titleAdd.value}&author=${authorAdd.value}`;
-		let counter = 1;
-		for (let i = 0; i < 5; i++) {
-		const response = await fetch(urlAddBook);
-            console.log(response);
+			const urlAddBook = `${baseUrl}${theKey}&op=insert&title=${titleAdd.value}&author=${authorAdd.value}`;
+			let counter = 1;
+			for (let i = 0; i < 5; i++) {
+			const response = await fetch(urlAddBook);
 			const respData = await response.json();
-			console.log('JSON data: ', respData);
 
 			if (respData.status == 'success') {
-				titleAdd.value = ''; //Rensa
-				authorAdd.value = ''; //Rensa
+				titleAdd.value = ''; //Clear
+				authorAdd.value = ''; //Clear
 				let successMessage = document.createElement('li');
 				successMessage.innerHTML = '<strong>' + 'Attempt Nr: ' + counter + '</strong>' + '<br>' + 'Status: ' + respData.status + '<br>' + 
 				'Message: Your request succeded' ;
@@ -102,38 +88,6 @@ loginText
 		}//for
 		});
 
-/*------------------------------------------------------------------------Delete Book*/
-	/*	const deleteBook = document.querySelector('#deleteBookButton');
-        deleteBook.addEventListener('click', async e => {
-			let titleDeleteId  = document.querySelector('#idInput');
-			let apiStatusUl = document.querySelector('#apiResponse');
-			apiStatusUl.innerHTML = ''; //Rensa
-		const urlDeleteBook = `${baseUrl}${theKey}&op=delete&id=${titleDeleteId.value}`;
-		
-		let counter = 1;
-		for (let i = 0; i < 5; i++) {
-		const response = await fetch(urlDeleteBook);
-            console.log(response);
-			const respData = await response.json();
-			console.log('JSON data: ', respData);
-
-			if (respData.status == 'success') {
-				let successMessage = document.createElement('li');
-				successMessage.innerHTML = '<strong>' + 'Attempt Nr: ' + counter + '</strong>' + '<br>' + 'Status: ' + respData.status + '<br>' + 
-				'Message: Your request succeded' ;
-				apiStatusUl.appendChild(successMessage);
-				break;
-			} else {
-				let errorMessage = document.createElement('li');
-				errorMessage.innerHTML = '<strong>' + 'Attempt Nr: ' + counter + '</strong>' + 'Status: ' + respData.status + '<br>' + 
-				'Message: ' + respData.message ;
-				apiStatusUl.appendChild(errorMessage);
-			}//else
-			counter++;
-		}//for
-		});
-		*/
-
 /*------------------------------------------------------------------------View Book*/
 		const viewBook = document.querySelector('#showCards');
         viewBook.addEventListener('click', async e => {
@@ -144,20 +98,16 @@ loginText
 		
 		let counter = 1;
 		for (let i = 0; i < 5; i++) {
-		const response = await fetch(urlAddViewBook);
-            console.log(response);
+			const response = await fetch(urlAddViewBook);
             const respData = await response.json();
-			console.log('JSON data: ', respData);
 			
 			if (respData.status == 'success') {
 				let successMessage = document.createElement('li');
 				successMessage.innerHTML = '<strong>' + 'Attempt Nr: ' + counter + '</strong>' + '<br>' + 'Status: ' + respData.status + '<br>' + 
 				'Message: Your request succeded' ;
 				apiStatusUl.appendChild(successMessage);
+				let dataObj = respData.data;
 			
-			let dataObj = respData.data;
-			console.log('Här är dataobjektet ' + dataObj);
-			console.log('Här är dataobjektets längd ' + dataObj.length);
 			
 			let bookCards = document.querySelector('.bookCards');
 			bookCards.innerHTML = '';  // clear the container
@@ -170,24 +120,107 @@ loginText
 				bookCards.appendChild(card);
 				// card.className = 'card';  <- gör samma sak som classList men med mindre precision
 
-					
-								//Skapar title till varge objekt
+				//Create a divcontainer to every book
+				let bookId = document.createElement('div');
+				bookId.classList.add('title');
+				//bookId.innerText = 'Book-ID:' + dataObj[i].id;
+				card.appendChild(bookId);
+		
+				//Create ul to every book
+				let bookProp = document.createElement('ul');
+				bookProp.classList.add('info');
+				bookId.appendChild(bookProp);
+				
+
+				// Title elements - Create listelement and editable spanelement with unique classname for every spanelement
+				let titleProp = document.createElement('li');
+				titleProp.classList.add('titleInfo')
+				titleProp.innerHTML = 'Title:  ';
+				bookProp.appendChild(titleProp);
+				
+				let idForModTitle = dataObj[i].id;
+				let titleSpan = document.createElement('span');
+				titleSpan.classList.add(idForModTitle + 'title'); //unique classname
+				titleSpan.innerHTML = dataObj[i].title;
+				titleSpan.contentEditable = "true";
+				titleProp.appendChild(titleSpan); 
+
+				// Author elements - Create listelement and editable spanelement with unique classname for every spanelement
+				let authorProp = document.createElement('li');
+				authorProp.classList.add('authorInfo')
+				authorProp.innerHTML = 'Author:  ';
+				bookProp.appendChild(authorProp);
+
+				let idForModAuthor = dataObj[i].id;
+				let authorSpan = document.createElement('span');
+				authorSpan.classList.add(idForModAuthor + 'author'); //unique classname
+				authorSpan.innerHTML = dataObj[i].author;
+				authorSpan.contentEditable = "true";
+				authorProp.appendChild(authorSpan); 
+
+				//Update 
+				let updatedProp = document.createElement('li');
+				updatedProp.classList.add('updatedInfo')
+				updatedProp.innerHTML = 'Updated: ' + dataObj[i].updated;
+				bookProp.appendChild(updatedProp);
+
+				//Deletebutton
 				let deleteButton = document.createElement('button');
 				deleteButton.classList.add('deleteBtn');
 				deleteButton.value = `${dataObj[i].id}`
-				deleteButton.innerText = 'X';
+				deleteButton.innerText = 'Delete Book';
 				
 				//deleteButton.addEventListener = ('click', () => {
 				deleteButton.addEventListener('click', async e => {
-					apiStatusUl.innerHTML = ''; //Rensa
+					apiStatusUl.innerHTML = ''; //Clear
 					let urlDeleteBook = `${baseUrl}${theKey}&op=delete&id=${deleteButton.value}`
 
 					let counter = 1;
 					for (let i = 0; i < 5; i++) {
 					const response = await fetch(urlDeleteBook);
-						console.log(response);
 						const respData = await response.json();
-						console.log('JSON data: ', respData);
+	
+						if (respData.status == 'success') {
+							deleteButton.innerText = 'Book Deleted';
+							deleteButton.classList.add('deleteBtnDeleted')
+							let successMessage = document.createElement('li');
+							successMessage.innerHTML = '<strong>' + 'Attempt Nr: ' + counter + '</strong>' + '<br>' + 'Status: ' + respData.status + '<br>' + 
+							'Message: Your request succeded' ;
+							apiStatusUl.appendChild(successMessage);
+											break;
+						} else {
+							let errorMessage = document.createElement('li');
+							errorMessage.innerHTML = '<strong>' + 'Attempt Nr: ' + counter + '</strong>' + '<br>' + 'Status: ' + respData.status + '<br>' + 
+							'Message: ' + respData.message ;
+							apiStatusUl.appendChild(errorMessage);
+						}//else
+						counter++;
+					}//for
+				});
+				
+				card.appendChild(deleteButton);
+				
+				//Modify book object
+				let modifyButton = document.createElement('button');
+				modifyButton.innerText = 'Apply Change';
+				modifyButton.classList.add('modifyBtn');
+				let buttonValueId = dataObj[i].id;
+				modifyButton.value = buttonValueId;//${dataObj[i].title}${dataObj[i].author}`
+				let titleMod = document.querySelector(`.${CSS.escape(buttonValueId)}title`);
+				let authorMod = document.querySelector(`.${CSS.escape(buttonValueId)}author`);
+			
+				card.appendChild(modifyButton);
+				
+				modifyButton.addEventListener('click', async e => {
+					apiStatusUl.innerHTML = ''; //Rensa
+					let urlmodifyButton = `${baseUrl}${theKey}&op=update&id=${buttonValueId}&title=${titleMod.innerHTML}&author=${authorMod.innerHTML}`;
+					
+					//`${baseUrl}${theKey}&op=update&id=${modifyButton.value}&title=${authorMod.value}&author=${titleMod.value}`
+					
+					let counter = 1;
+					for (let i = 0; i < 5; i++) {
+					const response = await fetch(urlmodifyButton);
+						const respData = await response.json();
 							
 						if (respData.status == 'success') {
 							let successMessage = document.createElement('li');
@@ -203,25 +236,9 @@ loginText
 						}//else
 						counter++;
 					}//for
-				});
-				card.appendChild(deleteButton);			
-								
-		
-				//Skapar title till varge objekt
-				let bookId = document.createElement('div');
-				bookId.classList.add('title');
-				bookId.innerText = 'Book-ID:' + dataObj[i].id;
-				card.appendChild(bookId);
-		
-				//Skapar lista med egenskaper
-				let bookProp = document.createElement('ul');
-				bookProp.classList.add('info');
-				bookProp.innerHTML = 
-				'<li>' + 'Title:  ' + '<span id="spanTitle" contenteditable="true">' + dataObj[i].title + '</span>' + '</li>' + 
-				'<li>' + 'Author:  ' + '<span id="spanAuthor" contenteditable="true">' + dataObj[i].author + '</span>' + '</li>' + 
-				'<li>' + 'Updated:  '+ dataObj[i].updated + '</li>' ;
-		
-				bookId.appendChild(bookProp);
+				}); 
+				card.appendChild(modifyButton);
+
 			}//For-loop 
 
 			break;

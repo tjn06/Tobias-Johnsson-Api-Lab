@@ -10,7 +10,6 @@ body {
     background-color: rgb(255, 255, 255);
     background: url(backglibr.jpg);
 	background-size: cover;
-	
 }
 
 button {
@@ -21,26 +20,38 @@ button {
     border: 2px solid rgb(37, 130, 158);
     margin: 3px 0;
     box-sizing: border-box;
-    padding: 5px 10px;
+    padding: 5px 7px;
   }
 
-  input[type=text] {
+#apiRespStyle {
+    color: rgb(24, 86, 105);
+  }
+
+.deleteBtn {
+    margin-right: 2px;
+  }
+
+input[type=text] {
     border: 2px solid rgb(37, 130, 158);
     border-radius: 2px;
     margin: 3px 0;
     box-sizing: border-box;
     padding: 5px 10px;
-  }
+}
 
 .formsDiv {
     display: grid;
 }
 
+.deleteBtnDeleted {
+    background-color: brown;
+}
+
 
 .bookCards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    font-size: 0.7em;
+    grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+    font-size: 0.8em;
 }
 
 .card {
@@ -55,10 +66,11 @@ li {
     list-style-type: none;
 }
 
-#spanTitle, #spanAuthor {
-    color: rgb(126, 46, 86);
-    border: 1px solid silver;
+span {
+    color: rgb(94, 104, 116);
+    border-left: 1px solid rgb(225, 226, 225);
 }
+
 .inputTopDiv {
     display: flex;
     min-height: 10vh;
@@ -66,7 +78,6 @@ li {
     align-items: flex-start;
     justify-content: center;  
     padding-left: 1em;
-
 }
 
 .apiBottomDiv {
@@ -76,11 +87,10 @@ li {
     align-items: flex-start;
     padding-left: 1em;
     padding-bottom: 1em;
-    
 }
 
 #apiResponse {
-  font-size: 0.8em;  
+    font-size: 0.8em;  
 }
 
 @media (min-width: 600px) {
@@ -97,8 +107,8 @@ li {
         min-height: 30vh;
         flex-direction: column;
         align-items: flex-start;
-        border-top: 1px solid black;
-       
+        border-top: 2px solid rgb(37, 130, 158);
+    
     }
 
 }
