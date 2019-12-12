@@ -35,7 +35,7 @@ const baseUrl = 'https://www.forverkliga.se/JavaScript/api/crud.php?key=';
 		}); //Get Key
 
 /*------------------------------------------------------------------------Login and key*/
-loginText
+
 		let loginUser = document.querySelector('#loginText')
 		let displayInput = document.querySelector('#loginInput');
 		let scart = document.querySelector('#loginBtn');
